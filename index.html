@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudyBH – الصف الأول الثانوي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* ====== الألوان: غيّرها من هنا فقط ====== */
+:root{--bg:#0d1633;--card:#17265a;--line:#2b3d7a;--p:#6c63ff;--p2:#4a42d6;--acc:#ffc233;--acc2:#c99200;--ok:#2ed3a0;--bad:#ff6b81;--mut:#9db4ff;--s:1}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:#fff;font:700 17px/1.6 Tajawal,"Segoe UI",Tahoma,sans-serif;-webkit-tap-highlight-color:transparent}
+button{font:inherit;cursor:pointer;color:inherit}
+.m{unicode-bidi:isolate;direction:ltr;display:inline-block;font:700 1.05em "Times New Roman",serif;color:var(--acc)}
+#top{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:3px solid var(--line);display:flex;align-items:center;gap:12px;padding:10px 20px}
+#top .logo{font-weight:800;font-size:1.4rem;margin-inline-end:auto;cursor:pointer}
+.pill{background:var(--bg);border:2px solid var(--line);border-radius:20px;padding:2px 14px;font-weight:800}
+.shell{display:grid;grid-template-columns:1fr;gap:24px;max-width:1200px;margin:0 auto;padding:22px 16px 70px}
+#side{display:none}
+@media(min-width:900px){.shell{grid-template-columns:1fr 300px}#side{display:block}:root{--s:1.3}}
+@media(max-width:600px){:root{--s:.6}}
+.sc{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:14px}
+.sc .b2{font-size:2rem}.sc small{color:var(--mut)}
+.goal{height:12px;background:var(--bg);border-radius:8px;margin:6px 0;overflow:hidden}.goal i{display:block;height:100%;background:var(--acc);border-radius:8px;transition:width .5s}
+.hero{background:var(--p);border-bottom:6px solid var(--p2);border-radius:22px;padding:18px 22px;display:flex;gap:16px;align-items:center}
+.hero .face{font-size:3.2rem}.hero .t1{font-size:1.5rem;font-weight:800}.hero div div+div{color:#e3e6ff}
+.lab{margin:26px 0 12px;font-size:1.25rem;font-weight:800;color:var(--mut)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+.card{background:var(--card);border:2px solid var(--line);border-bottom:6px solid var(--line);border-radius:20px;padding:16px 8px;text-align:center;position:relative;transition:transform .15s}
+.card:hover{transform:translateY(-4px)}
+.card .e{font-size:2.4rem;display:block}.card b{display:block}.card small{display:block;color:var(--mut);min-height:1.6em}
+.card.on{background:var(--p);border-color:var(--p2);border-bottom-color:var(--p2)}.card.on small{color:#fff}
+.card:not(.on){opacity:.85}
+.tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--acc);color:#2a2000;font-size:.75rem;border-radius:10px;padding:0 10px}
+.btn{display:block;width:100%;background:var(--p);color:#fff;border:0;border-bottom:5px solid var(--p2);border-radius:16px;padding:12px;font-size:1.15rem;font-weight:800}
+.btn:active{transform:translateY(3px);border-bottom-width:2px}
+.btn.gold{background:var(--acc);color:#2a2000;border-bottom-color:var(--acc2)}
+.btn.off{background:var(--line);color:var(--mut);border-bottom-color:#22336a;pointer-events:none}
+.back{background:none;border:0;color:var(--mut);font-weight:800;padding:0;margin-bottom:10px}
+.unit{border-radius:20px;padding:14px 20px;border-bottom:6px solid rgba(0,0,0,.3);margin-top:8px}
+.unit small{display:block;opacity:.9}.unit b{font-size:1.3rem}
+.u0{background:#6c63ff}.u1{background:#00a6c8}.u2{background:#e0527f}
+.path{display:flex;flex-direction:column;align-items:center;gap:76px;padding:30px 0 70px}
+.node{width:84px;height:84px;border-radius:50%;border:0;border-bottom:8px solid var(--p2);background:var(--p);color:#fff;font-size:1.5rem;font-weight:800;position:relative;transform:translateX(calc(var(--o)*var(--s)*1px));transition:filter .15s}
+.node:hover{filter:brightness(1.15)}.node:active{margin-top:4px;border-bottom-width:4px}
+.node.done{background:var(--acc);color:#2a2000;border-bottom-color:var(--acc2)}
+.node.lock{background:#223268;color:var(--mut);border-bottom-color:#18244f}
+.node.test{width:96px;height:96px;font-size:2rem}
+.node .lbl{position:absolute;top:100%;left:50%;transform:translateX(-50%);font-size:.85rem;font-weight:700;color:#fff;width:170px;text-align:center;margin-top:8px;line-height:1.3}
+.node.go{animation:pulse 1.6s infinite}
+.node.go::before{content:"ابدأ";position:absolute;top:-36px;left:50%;transform:translateX(-50%);background:#fff;color:var(--p2);border-radius:12px;padding:0 12px;font-size:.9rem}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #6c63ffaa}100%{box-shadow:0 0 0 22px #6c63ff00}}
+.ov{position:fixed;inset:0;background:var(--bg);z-index:10;display:flex;flex-direction:column}
+.dim{background:#000a;justify-content:flex-end;align-items:center;z-index:12}
+.sheet{background:var(--card);border-top:4px solid var(--p);border-radius:26px 26px 0 0;width:100%;max-width:640px;padding:22px 22px 26px;animation:up .25s}
+@keyframes up{from{transform:translateY(60px);opacity:0}}
+.bar{display:flex;align-items:center;gap:12px;padding:14px 16px;max-width:760px;width:100%;margin:0 auto}
+.x{background:none;border:0;font-size:1.5rem;color:var(--mut)}
+.prog{flex:1;height:16px;background:var(--card);border-radius:10px;overflow:hidden}.prog i{display:block;height:100%;width:0;background:var(--acc);border-radius:10px;transition:width .35s}
+.body{flex:1;overflow:auto;max-width:760px;width:100%;margin:0 auto;padding:6px 18px 20px}
+.ttl{font-size:1.7rem;font-weight:800;margin:6px 0 14px}
+.box{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:12px 16px;margin:10px 0}
+.row{display:flex;align-items:center;gap:12px;margin:10px 0}
+.chip{min-width:48px;height:48px;border-radius:14px;background:var(--p);display:grid;place-items:center;font-size:1.3rem;border-bottom:4px solid var(--p2)}
+details.ex{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:10px 16px;margin:10px 0}
+details.ex summary{cursor:pointer;font-weight:800;color:var(--acc)}details.ex div{margin-top:8px;color:#fff}
+table{width:100%;border-collapse:collapse;text-align:center;margin-top:8px}
+th{background:var(--p);padding:6px}td{border:2px solid var(--line);padding:6px}
+.foot{border-top:2px solid var(--line);padding:14px 16px;background:var(--card)}.foot .in{max-width:760px;margin:auto}
+.foot.good{background:#0f3d3a;color:var(--ok)}.foot.bad{background:#4a1c2e;color:var(--bad)}
+.foot .msg{font-weight:800;font-size:1.2rem;margin-bottom:6px}
+.opt{display:block;width:100%;text-align:start;background:var(--card);border:2px solid var(--line);border-bottom:5px solid var(--line);border-radius:16px;padding:12px 16px;margin:10px 0;font-size:1.1rem;transition:transform .1s}
+.opt:hover{border-color:var(--p)}.opt.sel{border-color:var(--p);background:#232f78}
+.opt.right{border-color:var(--ok);background:#0f3d3a;color:var(--ok);animation:pop .35s}.opt.wrong{border-color:var(--bad);background:#4a1c2e;color:var(--bad)}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@keyframes pop{50%{transform:scale(1.04)}}
+.combo{background:var(--acc);color:#2a2000;border-radius:12px;padding:0 10px;animation:pop .35s}
+.center{text-align:center;padding-top:34px}.center .big{font-size:5.5rem;animation:pop .6s}
+.stats{display:flex;gap:10px;justify-content:center;margin:16px 0}.stats div{border:2px solid var(--p);border-radius:14px;padding:6px 16px;min-width:96px}
+.cf{position:fixed;top:-30px;z-index:30;pointer-events:none;animation:fall 1.7s ease-in forwards}
+@keyframes fall{to{transform:translateY(108vh) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.cf{display:none}.node.go,.sheet,.shake,.opt.right,.center .big{animation:none}}
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--acc);color:#2a2000;padding:8px 22px;border-radius:20px;z-index:40;display:none}
+</style>
+</head>
+<body>
+<div id="top"><span class="logo" onclick="home()">StudyBH 🐬</span><span class="pill" id="st"></span><span class="pill" id="xp"></span><button class="pill" id="sn" onclick="mute()">🔊</button></div>
+<div class="shell"><main id="app"></main><aside id="side"></aside></div>
+<div id="toast"></div>
+<script>
+/* ============================================================
+   1) أدوات مساعدة للكتابة (لا تعدّل)
+   M('x ≥ 25')  → يكتب الرياضيات بشكل صحيح داخل النص العربي
+   row('N','نص')  → سطر فيه حرف ملوّن ونص
+   box('نص')      → مربع شرح
+   reveal('سؤال','الحل') → سؤال يضغط عليه الطالب ليظهر الحل
+   ============================================================ */
+const M=s=>'<span class="m">'+s+'</span>';
+const row=(c,t)=>`<div class="row"><div class="chip">${c}</div><div>${t}</div></div>`;
+const box=t=>`<div class="box">${t}</div>`;
+const reveal=(q,a)=>`<details class="ex"><summary>${q}</summary><div>${a}</div></details>`;
+
+/* ============================================================
+   2) الوحدات والدروس: عدّل عناوين الدروس من هنا
+   ['رقم الدرس','العنوان']
+   test:[] ← أسئلة تقييم الوحدة (نفس شكل أسئلة الدرس بالأسفل)
+   ============================================================ */
+const UNITS=[
+ {name:'الوحدة الأولى',lessons:[['1-1','المجموعات والفترات'],['1-2','حل معادلات القيمة المطلقة'],['1-3','حل المتباينات الخطية في متغير واحد'],['1-4','حل المتباينات المركبة ومتباينات القيمة المطلقة']],
+  test:[ /* ← ضع أسئلة تقييم الوحدة الأولى هنا */ ]},
+ {name:'الوحدة الثانية',lessons:[['2-1','المعادلات الخطية بصيغة ميل - مقطع'],['2-2','المعادلات الخطية بصيغة نقطة - ميل'],['2-3','العلاقات والدوال'],['2-4','دوال خاصة'],['2-5','دوال القيمة المطلقة'],['2-6','تمثيل المتباينات الخطية ومتباينات القيمة المطلقة بيانيًا'],['2-7','حل أنظمة المتباينات الخطية بيانيًا']],
+  test:[ /* ← ضع أسئلة تقييم الوحدة الثانية هنا */ ]},
+ {name:'الوحدة الثالثة',lessons:[['3-1','تمثيل الدوال التربيعية بيانيًا'],['3-2','التحويلات الهندسية في التمثيلات البيانية للدوال التربيعية'],['3-3','حل المعادلات التربيعية بيانيًا'],['3-4','الأعداد المركبة'],['3-5','حل المعادلات التربيعية جبريًا']],
+  test:[ /* ← ضع أسئلة تقييم الوحدة الثالثة هنا */ ]}
+];
+
+/* ============================================================
+   3) محتوى الدروس — هنا تضيف الشرح والأسئلة
+   لدرس جديد: انسخ القالب التالي (وانقله خارج هذا التعليق)
+   وغيّر الرقم '1-2' إلى رقم الدرس.
+   ------------------------------------------------------------
+   LESSONS['1-2']={
+     goals:[                       // ← الأهداف (تظهر قبل بدء الدرس)
+       'الهدف الأول',
+       'الهدف الثاني'
+     ],
+     cards:[                       // ← الشرح: كل بطاقة تظهر وحدها
+       {title:'عنوان البطاقة', html:'نص الشرح هنا'},
+       {title:'مثال', html: reveal('اضغط لترى الحل','الحل هنا')}
+     ],
+     questions:[                   // ← الأسئلة بعد الشرح
+       {q:'نص السؤال',
+        options:['الخيار أ','الخيار ب','الخيار ج','الخيار د'],
+        answer:1,                  // ← رقم الإجابة الصحيحة (يبدأ من 0: أ=0، ب=1، ج=2، د=3)
+        why:'شرح الإجابة (يظهر للطالب بعد الإجابة)'}
+     ]
+   };
+   ============================================================ */
+const LESSONS={};
+
+LESSONS['1-1']={
+ goals:['تصنيف الأعداد الحقيقية.','وصف مجموعات جزئية من مجموعة الأعداد الحقيقية.'],
+ cards:[
+  {title:'لماذا؟ 🏎️',html:`<p>في سباق للسيارات يجب ألا يقل عمر المتسابق عن 25 سنة.</p>${box('يمكن التعبير عن ذلك بالمتباينة '+M('x ≥ 25'))}${box('ويمكن أيضًا التعبير عنه بصورة فترة: '+M('[25, ∞)'))}`},
+  {title:'مجموعات الأعداد',html:row('N','الأعداد الطبيعية: '+M('{1, 2, 3, …}'))+row('W','الأعداد الكلية: '+M('{0, 1, 2, 3, …}'))+row('Z','الأعداد الصحيحة: '+M('{…, −3, −2, −1, 0, 1, 2, 3, …}'))},
+  {title:'الأعداد النسبية Q',html:`<p>هي الأعداد التي يمكن كتابتها على الصورة ${M('a/b')} حيث a وَ b عددان صحيحان و b لا يساوي صفرًا.</p>${box('صورتها العشرية إما منتهية أو دورية.')}${box('أمثلة: '+M('0.125')+' ، '+M('−7/8')+' ، '+M('2/3 = 0.66…'))}`},
+  {title:'الأعداد غير النسبية I',html:`<p>صورتها العشرية ليست منتهية وليست دورية.</p>${box('أمثلة: '+M('π = 3.14159…')+' ، '+M('√3 = 1.73205…'))}${box('الجذور التربيعية للأعداد الكلية التي ليست مربعات كاملة هي أعداد غير نسبية.')}`},
+  {title:'الأعداد الحقيقية R',html:`<p>تتكون من مجموعتين مختلفتين: النسبية وغير النسبية.</p>${box('كل من N وَ W وَ Z مجموعة جزئية من Q، لأن كل عدد صحيح n يمكن كتابته '+M('n/1'))}<div class="box" style="text-align:center">${M('N ⊂ W ⊂ Z ⊂ Q ⊂ R')}</div>`},
+  {title:'مثال: تصنيف الأعداد',html:`<p>سمِّ مجموعات الأعداد التي ينتمي إليها كل عدد (اضغط لترى الحل):</p>${reveal(M('−23'),'Z ، Q ، R')}${reveal(M('√50'),'I ، R')}${reveal(M('−4/9'),'Q ، R')}`},
+  {title:'رموز الفترات',html:`${box('الرمزان '+M('[ ]')+' : طرف الفترة <b>ينتمي</b> إليها.')}${box('الرمزان '+M('( )')+' : طرف الفترة <b>لا ينتمي</b> إليها.')}${box('الرمزان '+M('∞')+' و '+M('−∞')+' : الفترة غير محدودة.')}
+<table><tr><th>المتباينة</th><th>الفترة</th></tr><tr><td>${M('a ≤ x ≤ b')}</td><td>${M('[a, b]')}</td></tr><tr><td>${M('a < x < b')}</td><td>${M('(a, b)')}</td></tr><tr><td>${M('a ≤ x < b')}</td><td>${M('[a, b)')}</td></tr><tr><td>${M('a < x ≤ b')}</td><td>${M('(a, b]')}</td></tr><tr><td>${M('x ≥ a')}</td><td>${M('[a, ∞)')}</td></tr><tr><td>${M('x < a')}</td><td>${M('(−∞, a)')}</td></tr></table>`}
+ ],
+ questions:[
+  {q:'العدد '+M('−23')+' ينتمي إلى مجموعة الأعداد:',options:['الطبيعية N','الصحيحة Z','غير النسبية I','الكلية W'],answer:1,why:'−23 عدد صحيح سالب، فهو في Z وQ وR.'},
+  {q:'العدد '+M('√50')+' ينتمي إلى مجموعة الأعداد:',options:['الصحيحة Z','النسبية Q','غير النسبية I','الكلية W'],answer:2,why:'50 ليس مربعًا كاملًا، فجذره عدد غير نسبي.'},
+  {q:'العدد '+M('−4/9')+' ينتمي إلى مجموعة الأعداد:',options:['الطبيعية N','الكلية W','الصحيحة Z','النسبية Q'],answer:3,why:'يمكن كتابته على الصورة a/b، فهو عدد نسبي.'},
+  {q:'أي الأعداد التالية عدد غير نسبي؟',options:[M('0.125'),M('2/3'),M('π'),M('−5')],answer:2,why:'π صورته العشرية غير منتهية وغير دورية.'},
+  {q:'العدد '+M('√36')+' ينتمي إلى مجموعة الأعداد:',options:['غير النسبية I فقط','الكلية W','ليس عددًا حقيقيًا','ليس نسبيًا'],answer:1,why:'√36 = 6 وهو عدد كلي.'},
+  {q:'المتباينة '+M('x ≥ 25')+' تكتب بصورة فترة هكذا:',options:[M('(25, ∞)'),M('[25, ∞)'),M('(−∞, 25]'),M('(−∞, 25)')],answer:1,why:'25 تنتمي للفترة فنستخدم [ ، والفترة غير محدودة من اليمين.'},
+  {q:'الفترة '+M('(−3, 5]')+' تعني:',options:[M('−3 ≤ x ≤ 5'),M('−3 < x < 5'),M('−3 < x ≤ 5'),M('−3 ≤ x < 5')],answer:2,why:'القوس ( لا يضم −3 والقوس ] يضم 5.'},
+  {q:'الرمزان '+M('( )')+' يدلان على:',options:['انتماء طرف الفترة إليها','عدم انتماء طرف الفترة إليها','أن الفترة مغلقة','أن العدد صحيح'],answer:1,why:'القوسان ( ) يعنيان أن الطرف لا ينتمي إلى الفترة.'}
+ ]
+};
+
+/* ============================================================
+   4) محرك اللعبة — لا تحتاج تعديله
+   ============================================================ */
+let S={streak:0,last:'',xp:0,today:0,todayDate:'',done:{}};
+try{S=Object.assign(S,JSON.parse(localStorage.getItem('studybh2')||'{}'))}catch(e){}
+const save=()=>{try{localStorage.setItem('studybh2',JSON.stringify(S))}catch(e){}};
+const ds=d=>d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();
+const T=()=>ds(new Date()),Y=()=>{const d=new Date();d.setDate(d.getDate()-1);return ds(d)};
+const streakNow=()=>(S.last===T()||S.last===Y())?S.streak:0;
+const todayXP=()=>S.todayDate===T()?S.today:0;
+function gain(x){const t=T();if(S.last!==t){S.streak=(S.last===Y())?S.streak+1:1;S.last=t}
+ if(S.todayDate!==t){S.todayDate=t;S.today=0}S.today+=x;S.xp+=x;save();head()}
+function head(){st.textContent='🔥 '+streakNow();xp.textContent='⭐ '+S.xp;
+ const g=Math.min(100,todayXP()/30*100);
+ side.innerHTML=`<div class="sc"><div class="b2">🔥 ${streakNow()}</div><div>سلسلة الأيام</div><small>أكمل درسًا كل يوم لتحافظ عليها</small></div>
+ <div class="sc"><b>⭐ المستوى ${Math.floor(S.xp/100)+1}</b><div class="goal"><i style="width:${S.xp%100}%"></i></div><small>${S.xp%100} / 100 نقطة</small></div>
+ <div class="sc"><b>🎯 هدف اليوم</b><div class="goal"><i style="width:${g}%"></i></div><small>${todayXP()} / 30 نقطة</small></div>`}
+function toast(t){const e=document.getElementById('toast');e.textContent=t;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',1600)}
+
+let snd=true,ac;
+function mute(){snd=!snd;sn.textContent=snd?'🔊':'🔇'}
+function beep(f,d=.12,t='sine'){if(!snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=t;o.frequency.value=f;g.gain.value=.07;o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+d)}catch(e){}}
+function boom(n=30){for(let i=0;i<n;i++){const s=document.createElement('i');s.className='cf';s.textContent=['🎉','⭐','✨','💜'][i%4];s.style.cssText='left:'+Math.random()*100+'vw;animation-delay:'+Math.random()*.5+'s;font-size:'+(14+Math.random()*18)+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),2400)}}
+
+const SUBJ=[['ريض 151','الرياضيات','➗',1],['عرب 101','اللغة العربية','📚'],['انج 101','اللغة الإنجليزية','🔤'],['فيز 102','الفيزياء','⚛️'],['كيم 102','الكيمياء','🧪'],['حيا 102','الأحياء','🧬'],['اجا 102','','🌍'],['قصد 101','','💰'],['اسر 102','','🏠'],['بدن 101','التربية البدنية','⚽'],['تقن 107','التقنية','💻'],['دين 101','التربية الإسلامية','🕌'],['وطن 101','التربية الوطنية','🇧🇭']];
+function home(){
+ const g=Math.min(100,todayXP()/30*100);
+ app.innerHTML=`<div class="hero"><div class="face">🐬</div><div style="flex:1"><div class="t1">جاهز للتحدي؟</div><div>أنهِ درسًا اليوم وحافظ على سلسلتك 🔥</div><div class="goal"><i style="width:${g}%"></i></div></div></div>
+ <div class="lab">المواد</div><div class="grid">${SUBJ.map((s,i)=>`<button class="card ${s[3]?'on':''}" onclick="pick(${i})">${s[3]?'':'<span class="tag">قريبًا</span>'}<span class="e">${s[2]}</span><b>${s[0]}</b><small>${s[1]}</small></button>`).join('')}</div>`;
+ scrollTo(0,0)}
+function pick(i){if(SUBJ[i][3]){beep(600);path()}else toast('قريبًا ✨ نجهّز لك هذه المادة')}
+
+const has=id=>{const L=LESSONS[id];return !!(L&&L.cards&&L.cards.length&&L.questions&&L.questions.length)};
+const OFF=[0,-70,-100,-70,0,70,100,70];
+function node(c,ic,l,fn,k){return `<button class="node ${c}" style="--o:${OFF[k%8]}" onclick="${fn}">${ic}<span class="lbl">${l}</span></button>`}
+function path(){
+ let h='<button class="back" onclick="home()">› رجوع</button><div class="lab" style="margin-top:0">ريض 151 – الرياضيات 1</div>',prev=true,k=0;
+ UNITS.forEach((u,ui)=>{
+  h+=`<div class="unit u${ui%3}"><small>ريض 151</small><b>${u.name}</b></div><div class="path">`;
+  u.lessons.forEach(([id,t])=>{
+   const done=S.done[id],ok=has(id)&&prev;
+   h+=node(done?'done':ok?'go':'lock',done?'✓':id,t,ok?`sheet('${id}')`:`toast('${has(id)?'أكمل الدرس السابق أولًا':'قريبًا ✨'}')`,k++);
+   prev=!!done});
+  const tid='T'+ui,hasT=u.test&&u.test.length,tok=prev&&hasT;
+  h+=node((S.done[tid]?'done':tok?'go':'lock')+' test',S.done[tid]?'✓':'🏆','تقييم '+u.name,tok?`testStart(${ui})`:"toast('قريبًا ✨')",k++);
+  if(hasT)prev=!!S.done[tid];
+  h+='</div>'});
+ app.innerHTML=h;scrollTo(0,0)}
+
+function ov(id,cls,h){let l=document.getElementById(id);if(!l){l=document.createElement('div');l.id=id;document.body.appendChild(l)}l.className='ov '+cls;l.innerHTML=h}
+function rm(id){const l=document.getElementById(id);if(l)l.remove()}
+function close_(){rm('L');rm('SH');path()}
+const title=id=>{for(const u of UNITS)for(const l of u.lessons)if(l[0]===id)return l[1]};
+
+function sheet(id){const L=LESSONS[id];beep(500);
+ ov('SH','dim',`<div class="sheet"><div class="lab" style="margin:0">الدرس ${id}</div><div class="ttl">${title(id)}</div>
+ <div class="lab" style="margin:10px 0 4px">🎯 الأهداف</div>${L.goals.map(g=>box(g)).join('')}
+ <button class="btn gold" style="margin-top:14px" onclick="explain('${id}')">ابدأ الدرس 🚀</button>
+ <button class="back" style="margin:12px auto 0;display:block" onclick="rm('SH')">إغلاق</button></div>`)}
+
+let R;
+function explain(id){rm('SH');R={id,ci:0};card()}
+function card(){const L=LESSONS[R.id],c=L.cards[R.ci],last=R.ci===L.cards.length-1;
+ ov('L','',`<div class="bar"><button class="x" onclick="close_()">✕</button><div class="prog"><i id="pg" style="width:${R.ci/L.cards.length*100}%"></i></div><span class="pill">شرح 📖</span></div>
+ <div class="body"><div class="ttl">${c.title}</div>${c.html}</div>
+ <div class="foot"><div class="in"><button class="btn ${last?'gold':''}" onclick="${last?'startQuiz(LESSONS[R.id].questions,lessonDone)':'R.ci++;beep(500);card()'}">${last?'ابدأ الأسئلة ⚡':'التالي'}</button></div></div>`);
+ setTimeout(()=>{const i=document.getElementById('pg');if(i)i.style.width=((R.ci+1)/L.cards.length*100)+'%'},30)}
+function lessonDone(ok){const f=!S.done[R.id];S.done[R.id]=1;const x=ok*5+(f?10:0);gain(x);return x}
+function testStart(ui){R={id:'T'+ui};startQuiz(UNITS[ui].test,ok=>{const f=!S.done[R.id];S.done[R.id]=1;const x=ok*8+(f?20:0);gain(x);return x})}
+
+let q;
+const shuf=a=>a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v[1]);
+function startQuiz(list,fin){q={list,fin,ord:shuf(list.map((_,i)=>i)),i:0,h:5,ok:0,combo:0};qs()}
+function qs(){q.o=shuf(q.list[q.ord[q.i]].options.map((_,i)=>i));q.sel=-1;q.chk=false;qr()}
+function qr(){const it=q.list[q.ord[q.i]],ok=q.sel===it.answer;
+ const o=q.o.map(i=>{let c='opt';if(q.chk){if(i===it.answer)c+=' right';else if(i===q.sel)c+=' wrong'}else if(i===q.sel)c+=' sel';
+  return `<button class="${c}" onclick="pickO(${i})">${it.options[i]}</button>`}).join('');
+ const foot=q.chk?`<div class="foot ${ok?'good':'bad'}"><div class="in"><div class="msg">${ok?(q.combo>=3?'رائع! إجابات متتالية 🔥':'ممتاز! 🎉'):'ليست الإجابة الصحيحة 😅'}</div><div style="margin-bottom:10px;font-weight:500;color:#fff">${it.why||''}</div><button class="btn ${ok?'':'off'}" style="${ok?'background:var(--ok);color:#06201a;border-bottom-color:#1a9a77':'pointer-events:auto;background:var(--bad);color:#2a0710;border-bottom-color:#c24a5e'}" onclick="nextQ()">متابعة</button></div></div>`
+  :`<div class="foot"><div class="in"><button class="btn ${q.sel<0?'off':''}" onclick="checkQ()">تحقق</button></div></div>`;
+ ov('L','',`<div class="bar"><button class="x" onclick="close_()">✕</button><div class="prog"><i style="width:${q.i/q.list.length*100}%"></i></div>${q.combo>=3?`<span class="combo">🔥 ×${q.combo}</span>`:''}<b style="color:var(--bad)">❤️ ${q.h}</b></div>
+ <div class="body ${q.chk&&!ok?'shake':''}"><div class="ttl">${it.q}</div>${o}</div>${foot}`)}
+function pickO(i){if(q.chk)return;q.sel=i;beep(440,.06);qr()}
+function checkQ(){if(q.sel<0)return;q.chk=true;const good=q.sel===q.list[q.ord[q.i]].answer;
+ if(good){q.ok++;q.combo++;beep(660);setTimeout(()=>beep(880),110);if(q.combo>=3)boom(12)}else{q.h--;q.combo=0;beep(200,.25,'square')}qr()}
+function nextQ(){if(q.h<=0)return end(false);q.i++;q.i>=q.list.length?end(true):qs()}
+function end(win){let x=0;if(win){x=q.fin(q.ok);boom(50);beep(784,.15);setTimeout(()=>beep(1046,.25),160)}
+ ov('L','',`<div class="body center"><div class="big">${win?'🏆':'💔'}</div><div class="ttl">${win?'أحسنت! أنهيت الدرس':'انتهت القلوب'}</div>
+ <p>${win?'إجاباتك الصحيحة: '+q.ok+' من '+q.list.length:'لا بأس، راجع الشرح وحاول مرة أخرى.'}</p>
+ ${win?`<div class="stats"><div>⭐ +${x}<br>نقاط</div><div>🔥 ${streakNow()}<br>سلسلة</div></div>`:''}</div>
+ <div class="foot"><div class="in"><button class="btn gold" onclick="${win?'close_()':'startQuiz(q.list,q.fin)'}">${win?'متابعة':'حاول مرة أخرى'}</button></div></div>`)}
+
+head();home();
+</script>
+</body>
+</html>
