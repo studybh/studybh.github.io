@@ -1,18 +1,15 @@
+const SUBJECTS={};
+
 /* ============================================================
    1) أدوات مساعدة للكتابة (لا تعدّل)
-   M('x ≥ 25')  → يكتب الرياضيات بشكل صحيح داخل النص العربي
-   row('N','نص')  → سطر فيه حرف ملوّن ونص
-   box('نص')      → مربع شرح
-   reveal('سؤال','الحل') → سؤال يضغط عليه الطالب ليظهر الحل
    ============================================================ */
-const SUBJECTS={};
 const M=s=>'<span class="m">'+s+'</span>';
 const row=(c,t)=>`<div class="row"><div class="chip">${c}</div><div>${t}</div></div>`;
 const box=t=>`<div class="box">${t}</div>`;
 const reveal=(q,a)=>`<details class="ex"><summary>${q}</summary><div>${a}</div></details>`;
 
 /* ============================================================
-   4) محرك اللعبة — لا تحتاج تعديله
+   4) محرك اللعبة
    ============================================================ */
 let S={streak:0,last:'',xp:0,today:0,todayDate:'',done:{}};
 try{S=Object.assign(S,JSON.parse(localStorage.getItem('studybh2')||'{}'))}catch(e){}
