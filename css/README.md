@@ -1,237 +1,195 @@
-Below is a guide explaining what each part does and how to edit it.
+# 🎨 StudyBH – CSS Guide
 
-1. Colors (Lines 1–3)
+Welcome to the design section!
 
-Change all main website colors here.
+The `style.css` file controls how StudyBH looks. You can use it to change colors, fonts, buttons, cards, spacing and more.
 
-Variable
+Here's where to find everything.
 
-What it controls
+---
 
---bg
+## 🌈 1. Website Colors
+**Lines 1–3**
 
-Main website background
+Want to change the website's colors? Start here!
 
---card
+| Code | What it changes |
+|---|---|
+| `--bg` | 🌑 Main background |
+| `--card` | 🃏 Cards and boxes |
+| `--line` | ➖ Borders and lines |
+| `--p` | 🟣 Main purple |
+| `--p2` | Darker purple |
+| `--acc` | 🟡 Yellow accent |
+| `--acc2` | Darker yellow |
+| `--ok` | 🟢 Correct answers |
+| `--bad` | 🔴 Wrong answers |
+| `--mut` | Secondary text |
+| `--s` | Lesson path scaling |
 
-Background of cards and boxes
+**Example:** Change `--bg` to change the background of the website.
 
---line
+---
 
-Borders and dividers
+## 🔤 2. Fonts & General Settings
+**Lines 4–6**
 
---p
+Controls:
+- Website font and text color.
+- General font sizes.
+- Default button settings.
+- Mathematical expressions.
 
-Main color (buttons, highlights)
+Want to make the website text bigger? Look for `font-size`.
 
---p2
+---
 
-Darker version of the main color
+## 🧭 3. Navigation Bar
+**Lines 7–9**
 
---acc
+Controls the top part of the website:
+- `#top` – Top navigation bar.
+- `#top .logo` – StudyBH logo.
+- `.pill` – XP, streak and sound indicators.
 
-Accent color (rewards and highlights)
+---
 
---acc2
+## 📐 4. Website Layout
+**Lines 10–13**
 
-Darker accent color
+Controls how the website is arranged.
 
---ok
+- `.shell` – Main layout.
+- `#side` – Sidebar.
+- Desktop settings – Screens wider than 900px.
+- Mobile settings – Screens narrower than 600px.
 
-Correct answers and success messages
+---
 
---bad
+## 🏠 5. Homepage & Subject Cards
+**Lines 14–20**
 
-Wrong answers and error messages
+Controls the homepage design.
 
---mut
+- `.hero` – Welcome section.
+- `.hero .face` – Dolphin emoji.
+- `.hero .t1` – Welcome heading.
+- `.sc` – Statistics cards.
+- `.goal` – Progress bar.
+- `.grid` – Subject card arrangement.
+- `.card` – Individual subject cards.
+- `.tag` – "قريبًا" labels.
 
-Secondary text
+---
 
---s
+## 🔘 6. Buttons
+**Lines 21–25**
 
-Lesson path scaling
+Want to change how buttons look?
 
-Example:
+- `.btn` – Main buttons.
+- `.btn:active` – When a button is pressed.
+- `.btn.gold` – Yellow buttons.
+- `.btn.off` – Disabled buttons.
+- `.back` – Back buttons.
 
-Change --bg to change the overall background.
+You can change their colors, size, spacing and shape.
 
-Change --p to change the main purple color.
+---
 
-Change --acc to change the yellow accent color.
+## 📚 7. Units & Lesson Map
+**Lines 26–36**
 
-2. General Settings (Lines 4–6)
+Controls the lesson selection screen.
 
-* – Basic sizing settings for all elements.
+- `.unit` – Unit headings.
+- `.u0`, `.u1`, `.u2` – Unit colors.
+- `.path` – Lesson path.
+- `.node` – Circular lesson buttons.
+- `.node.done` – Completed lessons.
+- `.node.lock` – Locked lessons.
+- `.node.test` – Unit tests.
+- `.node .lbl` – Lesson names.
 
-html, body – Main font, text color, background and font size.
+---
 
-button – Default button behavior.
+## 📖 8. Lessons & Popups
+**Lines 37–52**
 
-.m – Appearance of mathematical expressions.
+Controls what students see when they open a lesson.
 
-To change the general font size, edit 17px inside html,body.
+- `.ov` – Full-screen lesson window.
+- `.dim` – Dark background behind popups.
+- `.sheet` – Lesson popup.
+- `.bar` – Top bar.
+- `.x` – Close button.
+- `.prog` – Progress bar.
+- `.body` – Lesson content.
+- `.ttl` – Titles.
+- `.box` – Explanation boxes.
+- `.row` – Horizontal rows.
+- `.chip` – Small colored boxes.
+- `details.ex` – Expandable examples.
 
-3. Navigation Bar (Lines 7–9)
+---
 
-#top – Top navigation bar.
+## 📊 9. Tables
+**Lines 53–55**
 
-#top .logo – StudyBH logo.
+Controls tables inside lessons.
 
-.pill – XP, streak and sound buttons.
+- `table` – Whole table.
+- `th` – Table headings.
+- `td` – Table cells.
 
-You can change the bar's background, spacing, borders and logo size.
+---
 
-4. Website Layout (Lines 10–13)
+## 📝 10. Quizzes & Answers
+**Lines 56–64**
 
-.shell – Main website layout and width.
+Controls the quiz experience.
 
-#side – Statistics sidebar.
+- `.foot` – Feedback area.
+- `.foot.good` – Correct answer feedback.
+- `.foot.bad` – Wrong answer feedback.
+- `.opt` – Answer choices.
+- `.opt.sel` – Selected answer.
+- `.opt.right` – Correct choice.
+- `.opt.wrong` – Incorrect choice.
 
-@media(min-width:900px) – Desktop layout.
+---
 
-@media(max-width:600px) – Mobile layout.
+## ✨ 11. Animations & Effects
+**Lines 65–73**
 
-Change these settings to adjust how the website looks on different screen sizes.
+Controls the little animations that make StudyBH interactive.
 
-5. Homepage (Lines 14–20)
+- `.shake` – Shake effect.
+- `@keyframes sh` – Shake animation.
+- `@keyframes pop` – Pop animation.
+- `.combo` – Consecutive correct answers.
+- `.center` – Centered content.
+- `.stats` – Statistics.
+- `.cf` – Confetti.
+- `@keyframes fall` – Falling confetti.
 
-.sc – Statistics cards.
+---
 
-.goal – Progress bar.
+## 🔔 12. Notifications
+**Final lines**
 
-.hero – Welcome banner.
+- `#toast` – Small messages that appear at the bottom of the screen.
 
-.hero .face – Dolphin emoji.
+---
 
-.hero .t1 – Welcome heading.
+## 💡 Before You Edit
 
-.lab – Section headings.
+A few things to remember:
 
-.grid – Subject card arrangement.
+1. **Find anything quickly:** Press `Ctrl + F` and search for its name.
+2. **Change colors:** Start with the variables in section 1.
+3. **Keep things organized:** Add new CSS to the correct section.
+4. **Test your changes:** Check both mobile and desktop screens.
+5. **Be careful:** CSS changes appearance, not website functionality.
 
-.card – Individual subject cards.
-
-.card:hover – Hover effect.
-
-.card.on – Available subject card.
-
-.tag – "قريبًا" label.
-
-6. Buttons (Lines 21–25)
-
-.btn – Main buttons.
-
-.btn:active – Button when pressed.
-
-.btn.gold – Yellow buttons.
-
-.btn.off – Disabled buttons.
-
-.back – Back buttons.
-
-Change padding, font size, colors and border radius to customize buttons.
-
-7. Units and Lessons (Lines 26–36)
-
-.unit – Unit heading.
-
-.u0 – First unit color.
-
-.u1 – Second unit color.
-
-.u2 – Third unit color.
-
-.path – Lesson path layout.
-
-.node – Circular lesson buttons.
-
-.node:hover – Hover effect.
-
-.node.done – Completed lessons.
-
-.node.lock – Locked lessons.
-
-.node.test – Unit assessment buttons.
-
-.node .lbl – Lesson names.
-
-.node.go – Available lesson animation.
-
-8. Lesson Screens (Lines 37–52)
-
-.ov – Full-screen lesson and quiz screens.
-
-.dim – Background behind popups.
-
-.sheet – Lesson introduction popup.
-
-.bar – Top bar inside lessons.
-
-.x – Close button.
-
-.prog – Quiz progress bar.
-
-.body – Main lesson content area.
-
-.ttl – Titles and headings.
-
-.box – Explanation boxes.
-
-.row – Horizontal content rows.
-
-.chip – Colored symbol boxes.
-
-details.ex – Expandable examples.
-
-9. Tables (Lines 53–55)
-
-table – Table appearance.
-
-th – Table headers.
-
-td – Table cells.
-
-10. Quiz Design (Lines 56–64)
-
-.foot – Bottom quiz panel.
-
-.foot.good – Correct-answer feedback.
-
-.foot.bad – Wrong-answer feedback.
-
-.foot .msg – Feedback heading.
-
-.opt – Answer options.
-
-.opt:hover – Hovered answer.
-
-.opt.sel – Selected answer.
-
-.opt.right – Correct answer.
-
-.opt.wrong – Incorrect answer.
-
-11. Animations (Lines 65–73)
-
-.shake – Incorrect-answer shake effect.
-
-@keyframes sh – Shake animation.
-
-@keyframes pop – Pop animation.
-
-.combo – Consecutive correct-answer indicator.
-
-.center – Centered completion screen.
-
-.stats – XP and streak statistics.
-
-.cf – Celebration confetti.
-
-@keyframes fall – Falling confetti animation.
-
-prefers-reduced-motion – Reduces animations for users who prefer less motion.
-
-12. Notifications (Final Lines)
-
-#toast – Small notification messages appearing at the bottom of the screen.
+**Have fun designing StudyBH! 🚀**
