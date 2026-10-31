@@ -5,6 +5,7 @@
    box('نص')      → مربع شرح
    reveal('سؤال','الحل') → سؤال يضغط عليه الطالب ليظهر الحل
    ============================================================ */
+const SUBJECTS={};
 const M=s=>'<span class="m">'+s+'</span>';
 const row=(c,t)=>`<div class="row"><div class="chip">${c}</div><div>${t}</div></div>`;
 const box=t=>`<div class="box">${t}</div>`;
