@@ -3,7 +3,7 @@
    UNITS (الوحدات) و LESSONS (الشرح والأسئلة).
 */
 const UNITS = {
-  biology: [
+  حيا 102: [
     {
       name: 'الوحدة الأولى: دراسة الحياة',
       lessons: [
